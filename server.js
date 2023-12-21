@@ -7,7 +7,7 @@ const cors = require("cors");
 const port = process.env.PORT || 8080;
 
 mongoose
-  .connect(procee.env.MONGOBD_CONNECTION)
+  .connect(process.env.MONGODB_CONNECTION)
   .then(() => {
     console.log("reverseDB ing...");
   })
