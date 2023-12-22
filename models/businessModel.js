@@ -5,19 +5,25 @@ const bcrypt = require("bcrypt");
 const businessUser = new Schema({
   username: {
     type: String,
-    required: true,
     minlength: 3,
     maxlength: 20,
   },
   email: {
     type: String,
-    required: true,
   },
   password: {
     type: String,
-    required: true,
-    minlength: 3,
+    minlength: 6,
     maxlength: 255,
+  },
+  shopName: {
+    type: String,
+  },
+  startTime: {
+    type: Number,
+  },
+  endTime: {
+    type: Number,
   },
   date: {
     type: Date,
