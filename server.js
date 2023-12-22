@@ -8,7 +8,7 @@ const port = process.env.PORT || 8080;
 // ("mongodb://127.0.0.1:27017/mernDB");
 // process.env.MONGODB_CONNECTION
 mongoose
-  .connect("mongodb://127.0.0.1:27017/mernDB")
+  .connect(process.env.MONGODB_CONNECTION)
   .then(() => {
     console.log("reverseDB ing...");
   })
