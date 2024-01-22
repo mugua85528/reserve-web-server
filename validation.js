@@ -1,6 +1,6 @@
 const Joi = require("joi");
 
-const reverseValidation = (data) => {
+const reserveValidation = (data) => {
   const schema = Joi.object({
     year: Joi.number().required(),
     month: Joi.number().required(),
@@ -9,6 +9,7 @@ const reverseValidation = (data) => {
     time: Joi.string().required(),
     ms: Joi.number().required(),
     service: Joi.string().required(),
+    price: Joi.number().required(),
     name: Joi.string().required().messages({
       "string.base": `姓名必須填寫`,
       "string.empty": `姓名必須填寫`,
@@ -22,8 +23,8 @@ const reverseValidation = (data) => {
       "any.required": `手機號碼必須填寫`,
     }),
     gender: Joi.required(),
-    email: Joi.string(),
-    textarea: Joi.string(),
+    email: Joi.string().allow(null, ""),
+    textarea: Joi.string().allow(null, ""),
     terms: Joi.boolean().required().invalid(false).messages({
       "any.invalid": "商家條款必須勾選",
     }),
@@ -50,7 +51,7 @@ const loginValidation = (data) => {
 };
 const registerValidation = (data) => {
   const schema = Joi.object({
-    username: Joi.string().max(20).required().messages({
+    userName: Joi.string().max(20).required().messages({
       "string.base": `名稱必須填寫`,
       "string.empty": `名稱必須填寫`,
       "string.max": `名稱必須小於20個字`,
@@ -80,25 +81,32 @@ const shopDataValidation = (data) => {
       "string.max": `名稱必須小於20個字`,
       "any.required": `名稱必須填寫`,
     }),
-    startTime: Joi.number().min(0).max(24).required().messages({
-      "number.base": `營業開始時間必須填寫`,
-      "number.empty": `營業開始時間必須填寫`,
-      "number.min": `營業開始時間必須為0~24之間的整數`,
-      "number.max": `營業開始時間必須為0~24之間的整數`,
-      "any.required": `營業開始時間必須填寫`,
+    description: Joi.string().max(30).required().messages({
+      "string.base": `簡介必須填寫`,
+      "string.empty": `簡介必須填寫`,
+      "string.max": `簡介不得超過30個字`,
+      "any.required": `簡介必須填寫`,
     }),
-    endTime: Joi.number().min(0).max(24).required().messages({
-      "number.base": `營業結束時間必須填寫`,
-      "number.empty": `營業結束時間必須填寫`,
-      "number.min": `營業結束時間必須為0~24之間的整數`,
-      "number.max": `營業結束時間必須為0~24之間的整數`,
-      "any.required": `營業結束時間必須填寫`,
+    address: Joi.string().required(),
+    openTime: Joi.number().min(0).max(24).required().messages({
+      "number.base": `開始營業時間必須填寫`,
+      "number.empty": `開始營業時間必須填寫`,
+      "number.min": `開始營業時間必須為0~24之間的整數`,
+      "number.max": `開始營業時間必須為0~24之間的整數`,
+      "any.required": `開始營業時間必須填寫`,
+    }),
+    closeTime: Joi.number().min(0).max(24).required().messages({
+      "number.base": `結束營業時間必須填寫`,
+      "number.empty": `結束營業時間必須填寫`,
+      "number.min": `結束營業時間必須為0~24之間的整數`,
+      "number.max": `結束營業時間必須為0~24之間的整數`,
+      "any.required": `結束營業時間必須填寫`,
     }),
   });
   return schema.validate(data);
 };
 
-module.exports.reverseValidation = reverseValidation;
+module.exports.reserveValidation = reserveValidation;
 module.exports.loginValidation = loginValidation;
 module.exports.registerValidation = registerValidation;
 module.exports.shopDataValidation = shopDataValidation;

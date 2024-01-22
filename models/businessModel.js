@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 const bcrypt = require("bcrypt");
 
 const businessUser = new Schema({
-  username: {
+  userName: {
     type: String,
     minlength: 3,
     maxlength: 20,
@@ -19,16 +19,29 @@ const businessUser = new Schema({
   shopName: {
     type: String,
   },
-  startTime: {
+  description: {
+    type: String,
+    maxlength: 30,
+  },
+  address: {
+    type: String,
+  },
+  openTime: {
     type: Number,
   },
-  endTime: {
+  closeTime: {
     type: Number,
   },
   date: {
     type: Date,
     default: Date.now,
   },
+  service: [
+    {
+      name: String,
+      price: Number,
+    },
+  ],
 });
 
 businessUser.methods.comparePassword = async function (password, cb) {

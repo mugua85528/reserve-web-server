@@ -1,8 +1,7 @@
-const { string } = require("joi");
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-const reverseData = new Schema({
+const reserveData = new Schema({
   year: {
     type: Number,
     require: true,
@@ -31,12 +30,16 @@ const reverseData = new Schema({
     type: String,
     require: true,
   },
+  price: {
+    type: Number,
+    require: true,
+  },
   name: {
     type: String,
     require: true,
   },
   phone: {
-    type: Number,
+    type: String,
     require: true,
   },
   gender: {
@@ -57,4 +60,4 @@ const reverseData = new Schema({
   },
 });
 
-module.exports = mongoose.model("ReverseData", reverseData);
+module.exports = mongoose.model("ReverseData", reserveData);
